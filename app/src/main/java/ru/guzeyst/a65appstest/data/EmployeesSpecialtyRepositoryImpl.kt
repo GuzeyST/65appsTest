@@ -3,7 +3,7 @@ package ru.guzeyst.a65appstest.data
 import ru.guzeyst.a65appstest.domain.EmployeesSpecialtyRepository
 
 class EmployeesSpecialtyRepositoryImpl: EmployeesSpecialtyRepository {
-    override fun loadResponse() {
+    override fun loadResponse(): Boolean {
         TODO("Not yet implemented")
     }
 
