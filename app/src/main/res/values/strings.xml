@@ -2,4 +2,15 @@
     <string name="app_name">65appsTest</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="test_specialty">Специальность</string>
+    <string name="test_count">0</string>
+    <string name="name_test">Иванов</string>
+    <string name="desc_avatar">Аватарка сотрудника</string>
+    <string name="test_old">32 года</string>
+    <string name="label_name">Имя:</string>
+    <string name="label_last_name">Фамилия:</string>
+    <string name="label_old">Возраст:</string>
+    <string name="label_specialty">Специальности:</string>
+    <string name="label_birthday">День рождения:</string>
+    <string name="test_sp">Работник</string>
 </resources>
