@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/specialtiesFragment">
+
+    <navigation android:id="@+id/navigation3"
+        app:startDestination="@id/navigation2">
+        <navigation
+            android:id="@+id/navigation2"
+            app:startDestination="@id/navigation">
+            <navigation
+                android:id="@+id/navigation"
+                app:startDestination="@id/specialtiesFragment">
+                <fragment
+                    android:id="@+id/specialtiesFragment"
+                    android:name="ru.guzeyst.a65appstest.presentation.specialties.SpecialtiesFragment"
+                    android:label="fragment_specialties"
+                    tools:layout="@layout/fragment_specialties" >
+                    <action
+                        android:id="@+id/action_specialtiesFragment_to_employeesListFragment"
+                        app:destination="@id/employeesListFragment" />
+                </fragment>
+                <fragment
+                    android:id="@+id/employeeItemFragment"
+                    android:name="ru.guzeyst.a65appstest.presentation.employeeItem.EmployeeItemFragment"
+                    android:label="fragment_employee_item"
+                    tools:layout="@layout/fragment_employee_item" >
+                    <action
+                        android:id="@+id/action_employeeItemFragment_to_employeesListFragment"
+                        app:destination="@id/employeesListFragment" />
+                </fragment>
+                <fragment
+                    android:id="@+id/employeesListFragment"
+                    android:name="ru.guzeyst.a65appstest.presentation.employees.EmployeesListFragment"
+                    android:label="fragment_employees_list"
+                    tools:layout="@layout/fragment_employees_list" >
+                    <action
+                        android:id="@+id/action_employeesListFragment_to_employeeItemFragment"
+                        app:destination="@id/employeeItemFragment" />
+                    <action
+                        android:id="@+id/action_employeesListFragment_to_specialtiesFragment"
+                        app:destination="@id/specialtiesFragment" />
+                </fragment>
+            </navigation>
+        </navigation>
+    </navigation>
+</navigation>

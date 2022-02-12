@@ -1,0 +1,9 @@
+package ru.guzeyst.a65appstest.data.network
+
+import retrofit2.http.GET
+import ru.guzeyst.a65appstest.domain.model.ResponseDto
+
+interface ApiService {
+    @GET("testTask.json")
+    fun LoadResponse(): ResponseDto
+}
