@@ -1,6 +1,5 @@
 package ru.guzeyst.a65appstest.presentation.specialties
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch

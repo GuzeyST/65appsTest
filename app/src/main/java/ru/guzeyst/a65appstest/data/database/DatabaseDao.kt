@@ -26,4 +26,7 @@ interface DatabaseDao{
 
     @Query("SELECT * FROM Specialties")
     fun getAllSpecialties(): LiveData<List<SpecialtyEntity>>
+
+    @Query("SELECT * FROM employee_specialty LEFT JOIN employees ON id_employee == id WHERE employee_specialty.id_specialty = :id_specialty")
+    fun getEmployeesBySpecialty(id_specialty: Long): LiveData<List<EmployeeEntity>>
 }

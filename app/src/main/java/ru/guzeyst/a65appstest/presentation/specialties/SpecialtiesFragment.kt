@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import ru.guzeyst.a65appstest.R
 import ru.guzeyst.a65appstest.databinding.FragmentSpecialtiesBinding
 import ru.guzeyst.a65appstest.presentation.EmployeeApp
-import ru.guzeyst.a65appstest.presentation.employees.EmployeesListFragment
+import ru.guzeyst.a65appstest.presentation.ViewModelFactory
 import ru.guzeyst.a65appstest.presentation.specialties.adapter.SpecialtiesAdapter
 import javax.inject.Inject
 

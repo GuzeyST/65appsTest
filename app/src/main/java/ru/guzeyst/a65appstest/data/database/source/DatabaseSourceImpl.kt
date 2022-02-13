@@ -6,6 +6,7 @@ import ru.guzeyst.a65appstest.data.database.entities.EmployeeEntity
 import ru.guzeyst.a65appstest.data.database.entities.EmployeeSpecialtyEntity
 import ru.guzeyst.a65appstest.data.database.entities.SpecialtyEntity
 import ru.guzeyst.a65appstest.data.mapping.DomainModelFromEntity
+import ru.guzeyst.a65appstest.domain.model.Employee
 import ru.guzeyst.a65appstest.domain.model.Specialty
 import javax.inject.Inject
 
@@ -28,7 +29,13 @@ class DatabaseSourceImpl @Inject constructor(
         }
     }
 
+
+
     override fun getListSpecialties(): LiveData<List<Specialty>> {
-        return mapper.specialtyEntityFromSpecialty(dao.getAllSpecialties())
+        return mapper.specialtyFromSpecialtyEntity(dao.getAllSpecialties())
+    }
+
+    override fun getEmployeesBySpecialty(id_specialty: Long): LiveData<List<Employee>> {
+        return mapper.EmployeeFromEmployeeEntity(dao.getEmployeesBySpecialty(id_specialty))
     }
 }

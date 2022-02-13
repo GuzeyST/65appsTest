@@ -7,6 +7,7 @@ import ru.guzeyst.a65appstest.data.database.source.DatabaseSourceImpl
 import ru.guzeyst.a65appstest.data.mapping.EntityFromDto
 import ru.guzeyst.a65appstest.data.network.ApiFactory
 import ru.guzeyst.a65appstest.domain.EmployeesSpecialtyRepository
+import ru.guzeyst.a65appstest.domain.model.Employee
 import ru.guzeyst.a65appstest.domain.model.EmployeeDto
 import ru.guzeyst.a65appstest.domain.model.Specialty
 import javax.inject.Inject
@@ -28,8 +29,8 @@ class EmployeesSpecialtyRepositoryImpl @Inject constructor(
         return databaseSourceImpl.getListSpecialties()
     }
 
-    override fun getEmployeesBySpecialty() {
-        TODO("Not yet implemented")
+    override fun getEmployeesBySpecialty(id_specialty: Long): LiveData<List<Employee>>  {
+        return databaseSourceImpl.getEmployeesBySpecialty(id_specialty)
     }
 
     override fun getEmployeeById() {
