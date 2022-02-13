@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import ru.guzeyst.a65appstest.data.database.entities.EmployeeEntity
+import ru.guzeyst.a65appstest.data.database.entities.EmployeeSpecialtyEntity
 import ru.guzeyst.a65appstest.data.database.entities.SpecialtyEntity
 
 @androidx.room.Database(
     entities = [
         EmployeeEntity::class,
-        SpecialtyEntity::class
+        SpecialtyEntity::class,
+        EmployeeSpecialtyEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -33,4 +35,6 @@ abstract class Database : RoomDatabase() {
             }
         }
     }
+
+    abstract fun databaseDao(): DatabaseDao
 }

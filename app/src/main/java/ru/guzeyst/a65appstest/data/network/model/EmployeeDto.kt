@@ -1,9 +1,16 @@
 package ru.guzeyst.a65appstest.domain.model
 
+import com.google.gson.annotations.SerializedName
+
 data class EmployeeDto(
-    val avatar_url: String,
-    val birthday: String,
-    val f_name: String,
-    val l_name: String,
-    val specialtyDto: List<SpecialtyDto>
+    @SerializedName("avatr_url")
+    val avatr_url: String?,
+    @SerializedName("birthday")
+    val birthday: String?,
+    @SerializedName("f_name")
+    val f_name: String?,
+    @SerializedName("l_name")
+    val l_name: String?,
+    @SerializedName("specialty")
+    val specialtyDto: List<SpecialtyDto>?
 )

@@ -1,6 +1,10 @@
 package ru.guzeyst.a65appstest.domain.model
 
+import com.google.gson.annotations.SerializedName
+
 data class SpecialtyDto(
-    val name: String,
-    val specialty_id: Int
+    @SerializedName("name")
+    val name: String?,
+    @SerializedName("specialty_id")
+    val specialty_id: Int?
 )

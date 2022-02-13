@@ -1,60 +1,74 @@
 package ru.guzeyst.a65appstest.presentation.specialties
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ru.guzeyst.a65appstest.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import ru.guzeyst.a65appstest.databinding.FragmentSpecialtiesBinding
+import ru.guzeyst.a65appstest.presentation.EmployeeApp
+import ru.guzeyst.a65appstest.presentation.ViewModelFactory
+import ru.guzeyst.a65appstest.presentation.specialties.adapter.SpecialtiesAdapter
+import javax.inject.Inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SpecialtiesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SpecialtiesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel by lazy { ViewModelProvider(
+        this,
+        viewModelFactory
+    )[SpViewModel::class.java] }
+
+    private val component by lazy {
+        (requireActivity().application as EmployeeApp).component
     }
+
+    private var _binding: FragmentSpecialtiesBinding? = null
+    private val binding: FragmentSpecialtiesBinding
+        get() = _binding ?: throw RuntimeException("Specialties fragment binding is null")
+
+    private val adapter by lazy { SpecialtiesAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_specialties, container, false)
+        _binding = FragmentSpecialtiesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SpecialtiesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SpecialtiesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecyclerView()
+        setObserve()
+    }
+
+    private fun initRecyclerView(){
+        val recyclerView = binding.rvSpecialties
+        adapter.clickListener = {
+            findNavController().navigate(SpecialtiesFragmentDirections.actionSpecialtiesFragmentToEmployeesListFragment(it.specialty_id))
+        }
+        recyclerView.adapter = adapter
+    }
+
+    private fun setObserve(){
+        viewModel.listSpecialties.observe(this,{
+            adapter.submitList(it)
+        })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
 }

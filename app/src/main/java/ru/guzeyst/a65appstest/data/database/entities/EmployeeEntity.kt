@@ -1,16 +1,22 @@
 package ru.guzeyst.a65appstest.data.database.entities
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "Employees"
+    tableName = "employees"
 )
 data class EmployeeEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val avatar_url: String,
-    val birthday: String,
-    val f_name: String,
-    val l_name: String
+    @ColumnInfo(name = "id")
+    val id: Long,
+    @ColumnInfo(name = "avatar_url")
+    val avatarUrl: String? = "",
+    @ColumnInfo(name = "birthday")
+    val birthday: String? = "",
+    @ColumnInfo(name = "f_name")
+    val fName: String? = "",
+    @ColumnInfo(name = "l_name")
+    val lName: String? = ""
 )
