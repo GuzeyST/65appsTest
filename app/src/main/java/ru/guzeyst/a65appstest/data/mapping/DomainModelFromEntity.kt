@@ -45,15 +45,20 @@ class DomainModelFromEntity @Inject constructor() {
         return Employee(
             toEmp.id,
             toEmp.avatarUrl ?: EMPTY_STRING,
-            toEmp.birthday ?: DASH_STRING,
+            toEmp.birthday?.let{ getBirthday(toEmp.birthday) } ?: DASH_STRING,
             toEmp.fName ?: EMPTY_STRING,
             toEmp.lName ?: EMPTY_STRING,
-            toEmp.birthday?.let { birthday -> parseAge(birthday) } ?: EMPTY_STRING
+            toEmp.birthday?.let { birthday -> parseAge(birthday) } ?: DASH_STRING
         )
     }
 
+    private fun getBirthday(birthday: String): String {
+        if(birthday.isEmpty()) return DASH_STRING
+        return birthday
+    }
+
     private fun parseAge(birthday: String): String {
-        if (birthday.isEmpty()) return EMPTY_STRING
+        if (birthday.isEmpty()) return DASH_STRING
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern(FORMAT)
         val startDate: LocalDate = LocalDate.parse(birthday, formatter)
         val endDate: LocalDate = LocalDate.now()
