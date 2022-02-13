@@ -2,24 +2,22 @@ package ru.guzeyst.a65appstest.presentation.employees
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ru.guzeyst.a65appstest.databinding.FragmentEmployeesListBinding
 import ru.guzeyst.a65appstest.presentation.EmployeeApp
-import ru.guzeyst.a65appstest.presentation.specialties.SpViewModel
 import ru.guzeyst.a65appstest.presentation.ViewModelFactory
-import ru.guzeyst.a65appstest.presentation.specialties.SpecialtiesFragmentDirections
 import ru.guzeyst.a65appstest.presentation.specialties.adapter.EmployeesAdapter
-import ru.guzeyst.a65appstest.presentation.specialties.adapter.SpecialtiesAdapter
 import javax.inject.Inject
 
 
 class EmployeesListFragment : Fragment() {
+
+    private val args by navArgs<EmployeesListFragmentArgs>()
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -38,12 +36,10 @@ class EmployeesListFragment : Fragment() {
     private val binding: FragmentEmployeesListBinding
         get() = _binding ?: throw RuntimeException("Employees list fragment binding is null")
 
-    private val args by navArgs<EmployeesListFragmentArgs>()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentEmployeesListBinding.inflate(inflater, container, false
         )
         return binding.root
@@ -65,6 +61,7 @@ class EmployeesListFragment : Fragment() {
     }
 
     private fun setObserve(){
+        viewModel.getList(args.idSpecialty)
         viewModel.listEmployees.observe(this,{
             adapter.submitList(it)
         })

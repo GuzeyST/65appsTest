@@ -14,8 +14,8 @@ import ru.guzeyst.a65appstest.presentation.specialties.SpecialtiesFragment
 )
 interface ApplicationComponent {
 
-    fun inject(fragment: EmployeesListFragment)
     fun inject(fragment: SpecialtiesFragment)
+    fun inject(fragment: EmployeesListFragment)
 
     @Component.Factory
     interface Factory {
