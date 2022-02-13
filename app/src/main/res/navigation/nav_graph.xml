@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_employeesListFragment_to_specialtiesFragment"
             app:destination="@id/specialtiesFragment" />
+        <argument
+            android:name="id_specialty"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/specialtiesFragment"

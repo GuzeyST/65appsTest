@@ -1,7 +1,8 @@
 package ru.guzeyst.a65appstest.domain.useCase
 
 import ru.guzeyst.a65appstest.domain.EmployeesSpecialtyRepository
+import javax.inject.Inject
 
-class getListSpecialties(private val repo: EmployeesSpecialtyRepository) {
+class GetListSpecialties @Inject constructor(private val repo: EmployeesSpecialtyRepository) {
     operator fun invoke() = repo.getListSpecialties()
 }

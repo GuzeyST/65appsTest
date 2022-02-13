@@ -1,8 +1,11 @@
 package ru.guzeyst.a65appstest.domain
 
+import androidx.lifecycle.LiveData
+import ru.guzeyst.a65appstest.domain.model.Specialty
+
 interface EmployeesSpecialtyRepository {
-    fun loadResponse(): Boolean
-    fun getListSpecialties()
+    suspend fun loadResponse()
+    fun getListSpecialties(): LiveData<List<Specialty>>
     fun getEmployeesBySpecialty()
     fun getEmployeeById()
 }
