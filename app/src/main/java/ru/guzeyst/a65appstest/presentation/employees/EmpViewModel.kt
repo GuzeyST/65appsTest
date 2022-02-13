@@ -10,11 +10,9 @@ import javax.inject.Inject
 class EmpViewModel @Inject constructor(
     private val getEmployeesBySpecialty: GetEmployeesBySpecialty
 ) : ViewModel() {
-    private var _listEmployees = MutableLiveData<List<Employee>>()
-    val listEmployees: LiveData<List<Employee>>
-        get() = _listEmployees
+    var listEmployees: LiveData<List<Employee>>? = null
 
     fun getList(id: Long) {
-        _listEmployees.value = getEmployeesBySpecialty.invoke(id).value
+        listEmployees = getEmployeesBySpecialty.invoke(id)
     }
 }

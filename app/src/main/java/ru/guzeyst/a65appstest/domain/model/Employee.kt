@@ -5,5 +5,6 @@ data class Employee(
     val avatar_url: String,
     val birthday: String,
     val f_name: String,
-    val l_name: String
+    val l_name: String,
+    val age: String
 )

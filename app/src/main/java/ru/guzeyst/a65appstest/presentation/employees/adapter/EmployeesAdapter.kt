@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+import ru.guzeyst.a65appstest.R
 import ru.guzeyst.a65appstest.databinding.EmployeeItemShortBinding
 import ru.guzeyst.a65appstest.databinding.SpecialtyItemBinding
 import ru.guzeyst.a65appstest.domain.model.Employee
@@ -29,7 +31,18 @@ class EmployeesAdapter: ListAdapter<Employee, EmployeesAdapter.EmployeeViewHolde
         with(holder.binding){
             this.tvFirstName.text = item.f_name
             this.tvLastName.text = item.l_name
-            this.tvOld.text = item.id.toString()
+            this.tvOld.text = item.age
+
+            if (item.avatar_url.isEmpty()){
+                this.imageView.setImageResource(R.drawable.ic_baseline_face_24)
+            }else{
+                Picasso.get()
+                    .load(item.avatar_url)
+                    .error(R.drawable.ic_baseline_face_24)
+                    .placeholder(R.drawable.ic_baseline_face_24)
+                    .into(this.imageView)
+            }
+
             root.setOnClickListener { clickListener?.invoke(item) }
         }
     }

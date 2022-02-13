@@ -16,7 +16,6 @@ class EntityFromDto @Inject constructor(){
         private const val NEW_FORMAT = "dd.MM.yyyy"
         private const val OLD_FORMAT = "dd-MM-yyyy"
         private const val EMPTY_STRING = ""
-        private const val DASH_STRING = "-"
     }
 
     fun employeeEntityFromEmployeeDto(toDto: EmployeeDto): EmployeeEntity {
@@ -41,7 +40,7 @@ class EntityFromDto @Inject constructor(){
     }
 
     private fun parseData(dataStr: String): String {
-        var result = DASH_STRING
+        var result = EMPTY_STRING
         val newFormat = DateTimeFormatter.ofPattern(NEW_FORMAT)
         if (dataStr.isNotEmpty()) {
             result = try {

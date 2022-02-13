@@ -19,9 +19,12 @@ class EmployeesSpecialtyRepositoryImpl @Inject constructor(
 
     override suspend fun loadResponse() {
         val apiService = ApiFactory.apiService
-        val response = apiService.loadResponse()
-        response.listEmployees?.let {
-            parseResponse(it)
+        try {
+            val response = apiService.loadResponse()
+            response.listEmployees?.let {
+                parseResponse(it)
+            }
+        } catch (e: Exception) {
         }
     }
 

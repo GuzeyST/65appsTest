@@ -64,7 +64,7 @@ class EmployeesListFragment : Fragment() {
 
     private fun setObserve(){
         viewModel.getList(args.idSpecialty)
-        viewModel.listEmployees.observe(this,{
+        viewModel.listEmployees?.observe(this,{
             adapter.submitList(it)
         })
     }
