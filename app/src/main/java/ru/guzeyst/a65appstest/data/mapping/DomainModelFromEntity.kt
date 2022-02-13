@@ -11,7 +11,7 @@ import java.time.Period
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
-class DomainModelFromEntity @Inject constructor(){
+class DomainModelFromEntity @Inject constructor() {
 
     companion object {
         private const val FORMAT = "dd.MM.yyyy"
@@ -20,35 +20,45 @@ class DomainModelFromEntity @Inject constructor(){
     }
 
     fun specialtyFromSpecialtyEntity(toLiveData: LiveData<List<SpecialtyEntity>>): LiveData<List<Specialty>> {
-        return Transformations.map(toLiveData){ list ->
+        return Transformations.map(toLiveData) { list ->
             list.map {
                 Specialty(it.name, it.specialty_id)
             }
         }
     }
 
-    fun EmployeeFromEmployeeEntity(toLiveData: LiveData<List<EmployeeEntity>>): LiveData<List<Employee>> {
-        return Transformations.map(toLiveData){ list ->
+    fun employeeListFromEmployeeEntityList(toLiveData: LiveData<List<EmployeeEntity>>): LiveData<List<Employee>> {
+        return Transformations.map(toLiveData) { list ->
             list.map {
-                Employee(
-                    it.id,
-                    it.avatarUrl ?: EMPTY_STRING,
-                    it.birthday ?: DASH_STRING,
-                    it.fName ?: EMPTY_STRING,
-                    it.lName ?: EMPTY_STRING,
-                    it.birthday?.let {birthday -> parseAge(birthday) } ?: EMPTY_STRING
-                )
+                getEmployee(it)
             }
         }
     }
 
-    private fun parseAge(birthday: String): String{
-        if(birthday.isEmpty()) return EMPTY_STRING
+    fun employeeFromEmployeeEntity(toEmployee: LiveData<EmployeeEntity>): LiveData<Employee> {
+        return Transformations.map(toEmployee) {
+            getEmployee(it)
+        }
+    }
+
+    private fun getEmployee(toEmp: EmployeeEntity): Employee{
+        return Employee(
+            toEmp.id,
+            toEmp.avatarUrl ?: EMPTY_STRING,
+            toEmp.birthday ?: DASH_STRING,
+            toEmp.fName ?: EMPTY_STRING,
+            toEmp.lName ?: EMPTY_STRING,
+            toEmp.birthday?.let { birthday -> parseAge(birthday) } ?: EMPTY_STRING
+        )
+    }
+
+    private fun parseAge(birthday: String): String {
+        if (birthday.isEmpty()) return EMPTY_STRING
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern(FORMAT)
         val startDate: LocalDate = LocalDate.parse(birthday, formatter)
         val endDate: LocalDate = LocalDate.now()
         val period: Period = Period.between(startDate, endDate)
-        return "Возраст: ${period.getYears()} г."
+        return "Возраст: ${period.years} г."
 
     }
 

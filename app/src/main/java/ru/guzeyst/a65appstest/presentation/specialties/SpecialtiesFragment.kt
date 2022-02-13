@@ -18,10 +18,12 @@ class SpecialtiesFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-    private val viewModel by lazy { ViewModelProvider(
-        this,
-        viewModelFactory
-    )[SpViewModel::class.java] }
+    private val viewModel by lazy {
+        ViewModelProvider(
+            this,
+            viewModelFactory
+        )[SpViewModel::class.java]
+    }
 
     private val component by lazy {
         (requireActivity().application as EmployeeApp).component
@@ -36,7 +38,7 @@ class SpecialtiesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSpecialtiesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -52,16 +54,24 @@ class SpecialtiesFragment : Fragment() {
         setObserve()
     }
 
-    private fun initRecyclerView(){
+    private fun initRecyclerView() {
         val recyclerView = binding.rvSpecialties
         adapter.clickListener = {
-            findNavController().navigate(SpecialtiesFragmentDirections.actionSpecialtiesFragmentToEmployeesListFragment(it.specialty_id))
+            findNavController()
+                .navigate(
+                    SpecialtiesFragmentDirections
+                        .actionSpecialtiesFragmentToEmployeesListFragment(
+                            it.specialty_id,
+                            it.name
+                        )
+                )
+
         }
         recyclerView.adapter = adapter
     }
 
-    private fun setObserve(){
-        viewModel.listSpecialties.observe(this,{
+    private fun setObserve() {
+        viewModel.listSpecialties.observe(this, {
             adapter.submitList(it)
         })
     }

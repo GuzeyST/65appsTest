@@ -14,4 +14,6 @@ interface DatabaseSource {
     fun getListSpecialties(): LiveData<List<Specialty>>
 
     fun getEmployeesBySpecialty(id_specialty: Long): LiveData<List<Employee>>
+
+    fun getEmployeeById(id: Long): LiveData<Employee>
 }

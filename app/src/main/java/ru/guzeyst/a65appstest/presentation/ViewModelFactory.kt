@@ -2,7 +2,6 @@ package ru.guzeyst.a65appstest.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ru.guzeyst.a65appstest.presentation.employees.EmpViewModel
 import javax.inject.Inject
 import javax.inject.Provider
 

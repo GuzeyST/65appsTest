@@ -29,13 +29,15 @@ class DatabaseSourceImpl @Inject constructor(
         }
     }
 
-
-
     override fun getListSpecialties(): LiveData<List<Specialty>> {
         return mapper.specialtyFromSpecialtyEntity(dao.getAllSpecialties())
     }
 
     override fun getEmployeesBySpecialty(id_specialty: Long): LiveData<List<Employee>> {
-        return mapper.EmployeeFromEmployeeEntity(dao.getEmployeesBySpecialty(id_specialty))
+        return mapper.employeeListFromEmployeeEntityList(dao.getEmployeesBySpecialty(id_specialty))
+    }
+
+    override fun getEmployeeById(id: Long): LiveData<Employee> {
+        return mapper.employeeFromEmployeeEntity(dao.getEmployeeById(id))
     }
 }

@@ -12,7 +12,6 @@ import androidx.navigation.fragment.navArgs
 import ru.guzeyst.a65appstest.databinding.FragmentEmployeesListBinding
 import ru.guzeyst.a65appstest.presentation.EmployeeApp
 import ru.guzeyst.a65appstest.presentation.ViewModelFactory
-import ru.guzeyst.a65appstest.presentation.specialties.SpecialtiesFragmentDirections
 import ru.guzeyst.a65appstest.presentation.specialties.adapter.EmployeesAdapter
 import javax.inject.Inject
 
@@ -57,7 +56,14 @@ class EmployeesListFragment : Fragment() {
     private fun initRecyclerView(){
         val recyclerView = binding.rvEmployeesList
         adapter.clickListener = {
-            findNavController().navigate(EmployeesListFragmentDirections.actionEmployeesListFragmentToEmployeeItemFragment())
+            findNavController()
+                .navigate(
+                    EmployeesListFragmentDirections
+                        .actionEmployeesListFragmentToEmployeeItemFragment(
+                            it.id,
+                            args.specialty
+                        )
+                )
         }
         recyclerView.adapter = adapter
     }

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import ru.guzeyst.a65appstest.presentation.employeeItem.EmpItemViewModel
 import ru.guzeyst.a65appstest.presentation.employees.EmpViewModel
 import ru.guzeyst.a65appstest.presentation.specialties.SpViewModel
 
@@ -18,4 +19,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(EmpViewModel::class)
     fun bindEmpViewModel(viewModel: EmpViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EmpItemViewModel::class)
+    fun bindEmpItemViewModel(viewModel: EmpItemViewModel): ViewModel
 }

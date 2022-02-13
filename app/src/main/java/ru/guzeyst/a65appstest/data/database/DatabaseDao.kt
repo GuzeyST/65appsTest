@@ -1,11 +1,13 @@
 package ru.guzeyst.a65appstest.data.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import ru.guzeyst.a65appstest.data.database.entities.EmployeeEntity
 import ru.guzeyst.a65appstest.data.database.entities.EmployeeSpecialtyEntity
 import ru.guzeyst.a65appstest.data.database.entities.SpecialtyEntity
-import javax.inject.Inject
 
 @Dao
 interface DatabaseDao{
@@ -29,4 +31,7 @@ interface DatabaseDao{
 
     @Query("SELECT employees.* FROM employee_specialty LEFT JOIN employees ON id_employee == id WHERE employee_specialty.id_specialty = :id_specialty")
     fun getEmployeesBySpecialty(id_specialty: Long): LiveData<List<EmployeeEntity>>
+
+    @Query("SELECT * FROM employees WHERE id=:id")
+    fun getEmployeeById(id: Long): LiveData<EmployeeEntity>
 }

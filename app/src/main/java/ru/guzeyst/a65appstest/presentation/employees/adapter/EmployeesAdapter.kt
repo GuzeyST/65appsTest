@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.guzeyst.a65appstest.R
 import ru.guzeyst.a65appstest.databinding.EmployeeItemShortBinding
-import ru.guzeyst.a65appstest.databinding.SpecialtyItemBinding
 import ru.guzeyst.a65appstest.domain.model.Employee
-import ru.guzeyst.a65appstest.domain.model.Specialty
 
 class EmployeesAdapter: ListAdapter<Employee, EmployeesAdapter.EmployeeViewHolder>(EmployeesDiffCallBack) {
 

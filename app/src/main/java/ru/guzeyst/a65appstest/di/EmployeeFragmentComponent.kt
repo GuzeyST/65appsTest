@@ -2,8 +2,6 @@ package ru.guzeyst.a65appstest.di
 
 import dagger.BindsInstance
 import dagger.Subcomponent
-import ru.guzeyst.a65appstest.presentation.employees.EmployeesListFragment
-import ru.guzeyst.a65appstest.presentation.specialties.SpecialtiesFragment
 
 @Subcomponent(
     modules = [

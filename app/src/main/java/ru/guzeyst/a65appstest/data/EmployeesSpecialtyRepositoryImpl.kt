@@ -36,8 +36,8 @@ class EmployeesSpecialtyRepositoryImpl @Inject constructor(
         return databaseSourceImpl.getEmployeesBySpecialty(id_specialty)
     }
 
-    override fun getEmployeeById() {
-        TODO("Not yet implemented")
+    override fun getEmployeeById(id: Long): LiveData<Employee> {
+        return databaseSourceImpl.getEmployeeById(id)
     }
 
     private suspend fun parseResponse(responseListEmployees: List<EmployeeDto>){

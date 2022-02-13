@@ -8,5 +8,5 @@ interface EmployeesSpecialtyRepository {
     suspend fun loadResponse()
     fun getListSpecialties(): LiveData<List<Specialty>>
     fun getEmployeesBySpecialty(id_specialty: Long): LiveData<List<Employee>>
-    fun getEmployeeById()
+    fun getEmployeeById(id: Long): LiveData<Employee>
 }

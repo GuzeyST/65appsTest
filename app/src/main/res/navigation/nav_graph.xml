@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_employeeItemFragment_to_employeesListFragment"
             app:destination="@id/employeesListFragment" />
+        <argument
+            android:name="id_employee"
+            app:argType="long" />
+        <argument
+            android:name="specialty"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/employeesListFragment"
@@ -28,6 +34,9 @@
         <argument
             android:name="id_specialty"
             app:argType="long" />
+        <argument
+            android:name="specialty"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/specialtiesFragment"
